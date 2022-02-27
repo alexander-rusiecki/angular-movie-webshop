@@ -4,9 +4,17 @@ import { MoviesComponent } from '@components/movies/movies.component';
 import { CartComponent } from '@components/cart/cart.component';
 import { MovieDetailsComponent } from '@components/movie-details/movie-details.component';
 import { NotFoundComponent } from '@components/not-found/not-found.component';
+import { ActionComponent } from '@components/action/action.component';
+import { ThrillerComponent } from '@components/thriller/thriller.component';
+import { ComedyComponent } from '@components/comedy/comedy.component';
+import { SciFiComponent } from '@components/sci-fi/sci-fi.component';
 
 const routes: Routes = [
   { path: '', component: MoviesComponent },
+  { path: 'action', component: ActionComponent },
+  { path: 'thriller', component: ThrillerComponent },
+  { path: 'comedy', component: ComedyComponent },
+  { path: 'sci-fi', component: SciFiComponent },
   { path: 'cart', component: CartComponent },
   { path: 'movies/:id', component: MovieDetailsComponent },
   { path: '**', component: NotFoundComponent },

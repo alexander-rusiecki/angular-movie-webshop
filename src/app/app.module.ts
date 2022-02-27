@@ -9,11 +9,41 @@ import { CartComponent } from './components/cart/cart.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { MoviesComponent } from './components/movies/movies.component';
+import { ActionComponent } from './components/action/action.component';
+import { ComedyComponent } from './components/comedy/comedy.component';
+import { SciFiComponent } from './components/sci-fi/sci-fi.component';
+import { ThrillerComponent } from './components/thriller/thriller.component';
+import {
+  FontAwesomeModule,
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, CartComponent, NotFoundComponent, MovieDetailsComponent, MoviesComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    CartComponent,
+    NotFoundComponent,
+    MovieDetailsComponent,
+    MoviesComponent,
+    ActionComponent,
+    ComedyComponent,
+    SciFiComponent,
+    ThrillerComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FontAwesomeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    // Add an icon to the library for convenient access in other components
+    library.addIcons(faCartArrowDown);
+  }
+}

@@ -4,7 +4,7 @@
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <a
-            class="nav-link active"
+            class="nav-link"
             aria-current="page"
             routerLink=""
             routerLinkActive="active"
@@ -14,53 +14,49 @@
         </li>
         <li class="nav-item">
           <a
-            class="nav-link active"
+            class="nav-link"
             aria-current="page"
-            routerLink=""
+            routerLink="/action"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
             >Action</a
           >
         </li>
         <li class="nav-item">
           <a
-            class="nav-link active"
+            class="nav-link"
             aria-current="page"
-            routerLink=""
+            routerLink="/thriller"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
             >Thriller</a
           >
         </li>
         <li class="nav-item">
           <a
-            class="nav-link active"
+            class="nav-link"
             aria-current="page"
-            routerLink=""
+            routerLink="/comedy"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
             >Comedy</a
           >
         </li>
         <li class="nav-item">
           <a
-            class="nav-link active"
+            class="nav-link"
             aria-current="page"
-            routerLink=""
+            routerLink="/sci-fi"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
             >Sci-fi</a
           >
         </li>
         <li class="nav-item">
           <a
-            class="nav-link active"
+            class="nav-link"
             aria-current="page"
-            routerLink=""
+            routerLink="/cart"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Cart</a
           >
+            <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon>
+          </a>
         </li>
       </ul>
       <form class="d-flex">
