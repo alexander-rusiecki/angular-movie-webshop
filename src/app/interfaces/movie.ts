@@ -1,6 +1,6 @@
 import { IMovieCategory } from '@interfaces/movieCategory';
 
-export interface IProduct {
+export interface IMovie {
   id: number;
   name: string;
   description: string;

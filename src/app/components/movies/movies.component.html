@@ -1,1 +1,16 @@
-<p>movies works!</p>
+<div class="d-flex flex-wrap mx-auto" style="width: 90%">
+  <ng-container *ngFor="let movie of movies">
+    <a routerLink="/movies/{{ movie.id }}">
+      <div class="card m-3" style="width: 18rem">
+        <img
+          [src]="movie.imageUrl"
+          class="card-img-top"
+          alt="{{ movie.name }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.name }}</h5>
+        </div>
+      </div>
+    </a>
+  </ng-container>
+</div>

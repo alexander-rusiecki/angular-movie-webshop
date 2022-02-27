@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import {
+  FontAwesomeModule,
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -13,11 +18,6 @@ import { ActionComponent } from './components/action/action.component';
 import { ComedyComponent } from './components/comedy/comedy.component';
 import { SciFiComponent } from './components/sci-fi/sci-fi.component';
 import { ThrillerComponent } from './components/thriller/thriller.component';
-import {
-  FontAwesomeModule,
-  FaIconLibrary,
-} from '@fortawesome/angular-fontawesome';
-import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,6 @@ import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {
-    // Add an icon to the library for convenient access in other components
     library.addIcons(faCartArrowDown);
   }
 }

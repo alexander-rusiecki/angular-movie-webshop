@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  productsUrl:
+  moviesUrl:
     'https://medieinstitutet-wie-products.azurewebsites.net/api/products',
   categoriesUrl:
     'https://medieinstitutet-wie-products.azurewebsites.net/api/categories',
