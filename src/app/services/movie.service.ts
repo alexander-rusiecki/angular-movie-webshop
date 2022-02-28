@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { IMovie } from '@interfaces/movie';
-import { filter, map, Subject } from 'rxjs';
+import { map, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,8 @@ export class MovieService {
   movies$ = this.movies.asObservable();
   private movie = new Subject<IMovie>();
   movie$ = this.movie.asObservable();
+  private category = new Subject<any>();
+  category$ = this.category.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -23,18 +25,25 @@ export class MovieService {
       });
   }
   getMovieById(id: number) {
-    return this.http.get<IMovie>(environment.moviesUrl);
-    // .subscribe((webshopMovie: IMovie) => {
-    //   this.movies.next(webshopMovie);
-    // });
+    this.http
+      .get<IMovie[]>(environment.moviesUrl)
+      .pipe(
+        map((response) => response.find((movie: IMovie) => movie.id === id))
+      )
+      .subscribe((webshopMovie: any) => {
+        this.movie.next(webshopMovie);
+      });
+  }
+  getMoviesByCategory(category: string) {
+    this.http
+      .get<IMovie[]>(environment.categoriesUrl)
+      .pipe(
+        map((response) =>
+          response.filter((theCategory) => theCategory.name === category)
+        )
+      )
+      .subscribe((webshopCategory) => {
+        this.category.next(webshopCategory);
+      });
   }
 }
-// this.experienceService
-//   .getSessionListByExperienceId(id)
-//   .pipe(
-//     filter((res) => res.length > 0), // emits only if res.length is larger than 0
-//     map((res) => res[0]) // emits the actual data in res[0]
-//   )
-//   .subscribe((data) => {
-//     this.session.set(id, data);
-//   });

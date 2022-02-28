@@ -18,6 +18,7 @@ import { ActionComponent } from './components/action/action.component';
 import { ComedyComponent } from './components/comedy/comedy.component';
 import { SciFiComponent } from './components/sci-fi/sci-fi.component';
 import { ThrillerComponent } from './components/thriller/thriller.component';
+import { CategoryComponent } from './components/category/category.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ThrillerComponent } from './components/thriller/thriller.component';
     ComedyComponent,
     SciFiComponent,
     ThrillerComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,
