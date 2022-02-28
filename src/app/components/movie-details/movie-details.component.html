@@ -1,1 +1,33 @@
-<p>movie-details works!</p>
+<!-- <div class="container">
+  <div class="row card m-3">
+    <div class="col-6">
+      <img [src]="selectedMovie[0].imageUrl" class="card-img-top" />
+    </div>
+    <div class="col-6">
+      <div class="card-body">
+        <h5 class="card-title">{{ selectedMovie[0].name }}</h5>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="container m-4">
+  <div class="row">
+    <div class="col">
+      <img [src]="selectedMovie[0].imageUrl" class="card-img-top" />
+    </div>
+    <div class="col">
+      <h3 class="card-title">{{ selectedMovie[0].name }}</h3>
+      <p>{{ selectedMovie[0].description }}</p>
+      <small>release year {{ selectedMovie[0].year }}</small>
+      <h6>Price: {{ selectedMovie[0].price | currency }}</h6>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="card m-3" style="width: 18rem">
+  <img [src]="selectedMovie[0].imageUrl" class="card-img-top" />
+  <div class="card-body">
+    <h5 class="card-title">{{ selectedMovie[0].name }}</h5>
+  </div>
+</div> -->

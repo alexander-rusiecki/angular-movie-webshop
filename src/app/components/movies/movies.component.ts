@@ -18,6 +18,5 @@ export class MoviesComponent implements OnInit {
     });
 
     this.movieService.getAllMovies();
-    console.log(this.movies);
   }
 }
