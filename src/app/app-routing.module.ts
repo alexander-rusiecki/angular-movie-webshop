@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MoviesComponent } from '@components/movies/movies.component';
 import { CartComponent } from '@components/cart/cart.component';
+import { CheckoutComponent } from '@components/checkout/checkout.component';
 import { MovieDetailsComponent } from '@components/movie-details/movie-details.component';
 import { NotFoundComponent } from '@components/not-found/not-found.component';
 import { ActionComponent } from '@components/action/action.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   // { path: 'sci-fi', component: SciFiComponent },
   { path: 'categories/:category', component: CategoryComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'movies/:id', component: MovieDetailsComponent },
   { path: '**', component: NotFoundComponent },
 ];

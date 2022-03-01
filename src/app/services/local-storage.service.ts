@@ -24,7 +24,10 @@ export class LocalStorageService {
   set(key: string, value: any) {
     this.localStorage.setItem(key, JSON.stringify(value));
   }
-  removeItem(key: string) {
+  remove(key: string) {
     this.localStorage.removeItem(key);
+  }
+  getTotalPrice(key: string): any {
+    return this.localStorage.getItem(key);
   }
 }

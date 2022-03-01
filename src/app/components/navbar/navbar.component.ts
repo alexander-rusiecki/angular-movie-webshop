@@ -9,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   boughtMoviesAmount: number = 0;
   constructor(private localStorageService: LocalStorageService) {}
+  ngOnChanges() {
+    console.log(`ngOnChanges - data is ${this.boughtMoviesAmount}`);
+  }
 
   ngOnInit(): void {
     this.localStorageService.get('boughtMovies');

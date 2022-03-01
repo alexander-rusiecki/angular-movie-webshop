@@ -39,10 +39,10 @@ export class MovieService {
       .get<IMovie[]>(environment.categoriesUrl)
       .pipe(
         map((response) =>
-          response.filter((theCategory) => theCategory.name === category)
+          response.find((theCategory) => theCategory.name === category)
         )
       )
-      .subscribe((webshopCategory) => {
+      .subscribe((webshopCategory: any) => {
         this.category.next(webshopCategory);
       });
   }

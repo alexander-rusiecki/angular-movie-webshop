@@ -19,6 +19,7 @@ import { ComedyComponent } from './components/comedy/comedy.component';
 import { SciFiComponent } from './components/sci-fi/sci-fi.component';
 import { ThrillerComponent } from './components/thriller/thriller.component';
 import { CategoryComponent } from './components/category/category.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CategoryComponent } from './components/category/category.component';
     SciFiComponent,
     ThrillerComponent,
     CategoryComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
