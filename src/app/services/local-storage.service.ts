@@ -9,28 +9,22 @@ export class LocalStorageService {
   constructor() {
     this.localStorage = window.localStorage;
   }
+  getBoughtMoviesAmount(key: string): any {
+    return this.localStorage.getItem(key);
+  }
 
-  getItem(key: string): any {
-    if (this.isLocalStorageSupported) {
-      return this.localStorage.getItem(key) || [];
+  get(key: string): any {
+    if (this.localStorage.getItem(key) === null) {
+      this.localStorage.setItem(key, JSON.stringify([]));
+      return this.localStorage.getItem(key);
+    } else {
+      return this.localStorage.getItem(key);
     }
-    return null;
   }
-  setItem(key: string, value: any): boolean {
-    if (this.isLocalStorageSupported) {
-      this.localStorage.setItem(key, JSON.stringify(value));
-      return true;
-    }
-    return false;
+  set(key: string, value: any) {
+    this.localStorage.setItem(key, JSON.stringify(value));
   }
-  removeItem(key: string): boolean {
-    if (this.isLocalStorageSupported) {
-      this.localStorage.removeItem(key);
-      return true;
-    }
-    return false;
-  }
-  get isLocalStorageSupported(): boolean {
-    return !!this.localStorage;
+  removeItem(key: string) {
+    this.localStorage.removeItem(key);
   }
 }

@@ -48,7 +48,7 @@
             >Sci-fi</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item rel">
           <a
             class="nav-link"
             aria-current="page"
@@ -56,6 +56,9 @@
             routerLinkActive="active"
           >
             <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon>
+            <div class="abs">
+              {{ boughtMoviesAmount }}
+            </div>
           </a>
         </li>
       </ul>

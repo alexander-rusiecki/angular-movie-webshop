@@ -13,7 +13,7 @@ export class MovieDetailsComponent implements OnInit {
   movieId: number = 0;
   selectedMovie!: IMovie;
   key: string = 'boughtMovies';
-  boughtMovies: any = [];
+  boughtMovies: IMovie[] = [];
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
@@ -29,14 +29,11 @@ export class MovieDetailsComponent implements OnInit {
       this.movieService.getMovieById(this.movieId);
     });
     this.boughtMovies = JSON.parse(
-      this.localStorageService.getItem('boughtMovies')
+      this.localStorageService.get('boughtMovies')
     );
-    console.log(this.boughtMovies);
   }
   buyMovie(selectedMovie: any) {
-    this.boughtMovies.push(JSON.stringify(selectedMovie));
-    // console.log(this.boughtMovies);
-
-    this.localStorageService.setItem('boughtMovies', this.boughtMovies);
+    this.boughtMovies = [...this.boughtMovies, selectedMovie];
+    this.localStorageService.set('boughtMovies', this.boughtMovies);
   }
 }
