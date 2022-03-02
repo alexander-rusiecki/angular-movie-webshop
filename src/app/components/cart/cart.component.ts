@@ -9,17 +9,29 @@ import { IMovie } from '@interfaces/movie';
 })
 export class CartComponent implements OnInit {
   boughtMovies: IMovie[] = [];
-  totalPrice: any = 0;
+  totalPrice: number = 0;
   constructor(private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.boughtMovies = JSON.parse(
       this.localStorageService.get('boughtMovies')
     );
-    this.totalPrice = JSON.parse(
-      this.localStorageService.get('boughtMovies')
-    ).reduce((acc: number, curr: IMovie) => {
+
+    this.totalPrice = this.boughtMovies.reduce((acc: number, curr: IMovie) => {
       return acc + curr.price;
     }, 0);
+  }
+  remove(index: number): any {
+    this.boughtMovies.splice(index, 1);
+    this.totalPrice = this.boughtMovies.reduce((acc: number, curr: IMovie) => {
+      return acc + curr.price;
+    }, 0);
+    this.localStorageService.set('boughtMovies', this.boughtMovies);
+  }
+
+  clearCart() {
+    this.boughtMovies = [];
+    this.localStorageService.set('boughtMovies', this.boughtMovies);
+    this.localStorageService.clear('boughtMovies');
   }
 }

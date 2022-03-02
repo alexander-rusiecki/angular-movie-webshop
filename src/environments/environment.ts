@@ -4,10 +4,12 @@
 
 export const environment = {
   production: false,
-  moviesUrl:
+  allMoviesUrl:
     'https://medieinstitutet-wie-products.azurewebsites.net/api/products',
   categoriesUrl:
     'https://medieinstitutet-wie-products.azurewebsites.net/api/categories',
+  searchMoviesUrl:
+    'https://medieinstitutet-wie-products.azurewebsites.net/api/search',
 };
 
 /*

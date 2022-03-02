@@ -1,5 +1,8 @@
+import { IMovie } from './../../interfaces/movie';
+import { MovieService } from '@services/movie.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   boughtMoviesAmount: number = 0;
-  constructor(private localStorageService: LocalStorageService) {}
+  foundMovies: IMovie[] = [];
+  searchMovieForm = this.fb.group({
+    movie: [''],
+  });
+  searchTerm: string = '';
+  constructor(
+    private localStorageService: LocalStorageService,
+    private movieService: MovieService,
+    private fb: FormBuilder
+  ) {}
   ngOnChanges() {
     console.log(`ngOnChanges - data is ${this.boughtMoviesAmount}`);
   }

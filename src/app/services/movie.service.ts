@@ -14,26 +14,30 @@ export class MovieService {
   movie$ = this.movie.asObservable();
   private category = new Subject<any>();
   category$ = this.category.asObservable();
+  private search = new Subject<any>();
+  search$ = this.search.asObservable();
 
   constructor(private http: HttpClient) {}
 
   getAllMovies() {
     this.http
-      .get<IMovie[]>(environment.moviesUrl)
-      .subscribe((webshopMovies: IMovie[]) => {
-        this.movies.next(webshopMovies);
+      .get<IMovie[]>(environment.allMoviesUrl)
+      .subscribe((allMovies: IMovie[]) => {
+        this.movies.next(allMovies);
       });
   }
+
   getMovieById(id: number) {
     this.http
-      .get<IMovie[]>(environment.moviesUrl)
+      .get<IMovie[]>(environment.allMoviesUrl)
       .pipe(
         map((response) => response.find((movie: IMovie) => movie.id === id))
       )
-      .subscribe((webshopMovie: any) => {
-        this.movie.next(webshopMovie);
+      .subscribe((movieWithCorrectId: any) => {
+        this.movie.next(movieWithCorrectId);
       });
   }
+
   getMoviesByCategory(category: string) {
     this.http
       .get<IMovie[]>(environment.categoriesUrl)
@@ -44,6 +48,14 @@ export class MovieService {
       )
       .subscribe((webshopCategory: any) => {
         this.category.next(webshopCategory);
+      });
+  }
+
+  searchMovie(searchTerm: string) {
+    this.http
+      .get<IMovie[]>(`${environment.searchMoviesUrl}?searchText=${searchTerm}`)
+      .subscribe((webshopFoundMovies: any) => {
+        this.search.next(webshopFoundMovies);
       });
   }
 }

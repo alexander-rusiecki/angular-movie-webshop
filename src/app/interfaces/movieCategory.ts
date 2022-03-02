@@ -1,4 +1,4 @@
 export interface IMovieCategory {
-  categoryId: number;
+  id: number;
   name: string;
 }

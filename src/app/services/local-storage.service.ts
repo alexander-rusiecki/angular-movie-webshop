@@ -1,3 +1,4 @@
+import { IMovie } from '@interfaces/movie';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -9,9 +10,6 @@ export class LocalStorageService {
   constructor() {
     this.localStorage = window.localStorage;
   }
-  getBoughtMoviesAmount(key: string): any {
-    return this.localStorage.getItem(key);
-  }
 
   get(key: string): any {
     if (this.localStorage.getItem(key) === null) {
@@ -21,13 +19,16 @@ export class LocalStorageService {
       return this.localStorage.getItem(key);
     }
   }
-  set(key: string, value: any) {
+
+  set(key: string, value: IMovie[]) {
     this.localStorage.setItem(key, JSON.stringify(value));
   }
-  remove(key: string) {
+
+  clear(key: string) {
     this.localStorage.removeItem(key);
   }
-  getTotalPrice(key: string): any {
+
+  getBoughtMoviesAmount(key: string): any {
     return this.localStorage.getItem(key);
   }
 }
