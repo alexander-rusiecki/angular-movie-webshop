@@ -46,7 +46,7 @@ export class MovieService {
           response.find((theCategory) => theCategory.name === category)
         )
       )
-      .subscribe((webshopCategory: any) => {
+      .subscribe((webshopCategory) => {
         this.category.next(webshopCategory);
       });
   }

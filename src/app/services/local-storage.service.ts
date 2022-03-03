@@ -1,5 +1,5 @@
-import { IMovie } from '@interfaces/movie';
 import { Injectable } from '@angular/core';
+import { IMovie } from '@interfaces/movie';
 
 @Injectable({
   providedIn: 'root',
@@ -11,24 +11,24 @@ export class LocalStorageService {
     this.localStorage = window.localStorage;
   }
 
-  get(key: string): any {
-    if (this.localStorage.getItem(key) === null) {
-      this.localStorage.setItem(key, JSON.stringify([]));
-      return this.localStorage.getItem(key);
+  get(key: string): IMovie[] | [] {
+    if (localStorage.getItem(key) === null) {
+      localStorage.setItem(key, JSON.stringify([]));
+      return JSON.parse(localStorage.getItem(key)!);
     } else {
-      return this.localStorage.getItem(key);
+      return JSON.parse(localStorage.getItem(key)!);
     }
   }
 
-  set(key: string, value: IMovie[]) {
-    this.localStorage.setItem(key, JSON.stringify(value));
+  set(key: string, data: IMovie[]) {
+    this.localStorage.setItem(key, JSON.stringify(data));
   }
 
   clear(key: string) {
     this.localStorage.removeItem(key);
   }
 
-  getBoughtMoviesAmount(key: string): any {
-    return this.localStorage.getItem(key);
+  getBoughtMoviesAmount(key: string): number {
+    return JSON.parse(localStorage.getItem(key)!).length;
   }
 }

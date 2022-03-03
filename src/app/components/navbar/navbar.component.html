@@ -56,7 +56,7 @@
             routerLinkActive="active"
           >
             <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon>
-            <div class="abs">
+            <div class="abs" *ngIf="boughtMoviesAmount > 0">
               {{ boughtMoviesAmount }}
             </div>
           </a>

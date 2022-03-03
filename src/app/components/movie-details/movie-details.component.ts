@@ -28,9 +28,7 @@ export class MovieDetailsComponent implements OnInit {
       });
       this.movieService.getMovieById(this.movieId);
     });
-    this.boughtMovies = JSON.parse(
-      this.localStorageService.get('boughtMovies')
-    );
+    this.boughtMovies = this.localStorageService.get('boughtMovies');
   }
   buyMovie(selectedMovie: any) {
     this.boughtMovies = [...this.boughtMovies, selectedMovie];

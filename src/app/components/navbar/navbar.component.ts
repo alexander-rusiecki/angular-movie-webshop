@@ -27,8 +27,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.localStorageService.get('boughtMovies');
-    this.boughtMoviesAmount = JSON.parse(
-      this.localStorageService.getBoughtMoviesAmount('boughtMovies')
-    ).length;
+    this.boughtMoviesAmount =
+      this.localStorageService.getBoughtMoviesAmount('boughtMovies');
   }
 }

@@ -13,9 +13,7 @@ export class CartComponent implements OnInit {
   constructor(private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
-    this.boughtMovies = JSON.parse(
-      this.localStorageService.get('boughtMovies')
-    );
+    this.boughtMovies = this.localStorageService.get('boughtMovies');
 
     this.totalPrice = this.boughtMovies.reduce((acc: number, curr: IMovie) => {
       return acc + curr.price;
