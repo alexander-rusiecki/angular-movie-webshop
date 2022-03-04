@@ -1,0 +1,14 @@
+<div *ngFor="let order of activOrders; index as i">
+  <div class="card border-dark mb-3 d-flex flex-wrap mx-auto">
+    <div class="card-header">{{ order.id }}</div>
+    <div class="card-body">
+      <h4 class="card-title">{{ order.createdBy }}</h4>
+      <p class="card-text">
+        {{ order.paymentMethod }}
+      </p>
+    </div>
+    <button>
+      <fa-icon (click)="deleteOrder(i)" [icon]="['fas', 'trash-alt']"></fa-icon>
+    </button>
+  </div>
+</div>

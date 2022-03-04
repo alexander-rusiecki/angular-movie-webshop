@@ -1,31 +1,29 @@
-import { orderRow } from '@models/order-row';
+import { OrderRow } from '@models/order-row';
 
 export class Order {
-  id: number;
+  // id: number;
   companyId: number;
   created: string;
-  createdBy: null;
+  createdBy: string;
   paymentMethod: string;
   totalPrice: number;
   status: number;
-  orderRows: orderRow[];
+  orderRows: OrderRow[];
   constructor(
-    id: number,
-    companyId: number,
+    // id: number,
     created: string,
-    createdBy: null,
+    createdBy: string,
     paymentMethod: string,
     totalPrice: number,
-    status: number,
-    orderRows: orderRow[]
+    orderRows: OrderRow[]
   ) {
-    this.id = id;
+    // this.id = id;
     this.companyId = 40;
     this.created = created;
     this.createdBy = createdBy;
-    this.paymentMethod = 'Paypal';
+    this.paymentMethod = paymentMethod;
     this.totalPrice = totalPrice;
-    this.status = status;
+    this.status = 1;
     this.orderRows = orderRows;
   }
 }

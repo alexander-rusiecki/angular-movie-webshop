@@ -22,6 +22,7 @@ import { SciFiComponent } from './components/sci-fi/sci-fi.component';
 import { ThrillerComponent } from './components/thriller/thriller.component';
 import { CategoryComponent } from './components/category/category.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     ThrillerComponent,
     CategoryComponent,
     CheckoutComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

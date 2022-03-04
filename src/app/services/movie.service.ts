@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { IMovie } from '@interfaces/movie';
+import { IMovieCategory } from '@interfaces/movieCategory';
 import { map, Subject } from 'rxjs';
 
 @Injectable({
@@ -40,7 +41,7 @@ export class MovieService {
 
   getMoviesByCategory(category: string) {
     this.http
-      .get<IMovie[]>(environment.categoriesUrl)
+      .get<IMovieCategory[]>(environment.categoriesUrl)
       .pipe(
         map((response) =>
           response.find((theCategory) => theCategory.name === category)

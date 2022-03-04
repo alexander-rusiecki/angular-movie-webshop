@@ -32,6 +32,5 @@ export class MoviesComponent implements OnInit {
 
     this.movieService.searchMovie(this.searchMovieForm.value.movie);
     this.movies = this.foundMovies;
-    console.log(this.foundMovies);
   }
 }

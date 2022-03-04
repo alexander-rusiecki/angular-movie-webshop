@@ -1,4 +1,8 @@
-<form [formGroup]="searchMovieForm" class="d-flex" (ngSubmit)="handleSubmit()">
+<form
+  [formGroup]="searchMovieForm"
+  class="w-50 mt-5 mx-auto"
+  (ngSubmit)="handleSubmit()"
+>
   <input
     formControlName="movie"
     class="form-control me-sm-2"

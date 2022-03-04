@@ -5,3 +5,8 @@ a {
 a:hover {
   transform: scale(1.05);
 }
+
+form {
+  display: flex;
+  justify-content: center;
+}
