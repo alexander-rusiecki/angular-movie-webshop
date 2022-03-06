@@ -8,7 +8,10 @@
       </p>
     </div>
     <button>
-      <fa-icon (click)="deleteOrder(i)" [icon]="['fas', 'trash-alt']"></fa-icon>
+      <fa-icon
+        (click)="deleteOrder(order.id)"
+        [icon]="['fas', 'trash-alt']"
+      ></fa-icon>
     </button>
   </div>
 </div>

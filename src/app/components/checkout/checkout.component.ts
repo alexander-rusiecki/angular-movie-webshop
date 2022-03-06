@@ -18,6 +18,7 @@ export class CheckoutComponent implements OnInit {
   totalPrice: number = 0;
   order!: Order;
   orderRow: OrderRow[] = [];
+  amount: number = 0;
   orderForm = this.fb.group({
     name: [''],
     payment: [''],
@@ -37,13 +38,34 @@ export class CheckoutComponent implements OnInit {
   }
 
   handleSubmit() {
+    for (let i = 0; i < this.boughtMovies.length; i++) {
+      if (
+        !this.orderRow.some(
+          (movie) => movie.productId === this.boughtMovies[i].id
+        )
+      ) {
+        this.orderRow.push({
+          productId: this.boughtMovies[i].id,
+          amount: this.amount + 1,
+        });
+      } else {
+        for (let j = 0; j < this.orderRow.length; j++) {
+          if (this.orderRow[j].productId === this.boughtMovies[i].id) {
+            this.orderRow[j].amount++;
+          }
+        }
+      }
+    }
     this.order = new Order(
       new Date().toISOString().split('.')[0],
       this.orderForm.value.name,
       this.orderForm.value.payment,
       this.totalPrice,
-      this.boughtMovies.map((movie) => new OrderRow(movie.id, 1))
+      this.orderRow
+      // this.boughtMovies.map((movie) => new OrderRow(movie.id, 1))
     );
+    this.localStorageService.clear('boughtMovies');
+    this.boughtMovies = [];
 
     this.orderService.order$.subscribe((placedOrder: any) => {
       this.order = placedOrder;

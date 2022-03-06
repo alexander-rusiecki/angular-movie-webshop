@@ -20,6 +20,14 @@ export class AdminService {
       });
   }
   deleteOrder(id: number) {
-    this.http.delete(`${environment.createOrderUrl}/id?companyId=40`);
+    this.http
+      .delete(`${environment.createOrderUrl}/${id}?companyId=40`)
+      .subscribe(() => {
+        this.http
+          .get<IOrder[]>(`${environment.createOrderUrl}?companyId=40`)
+          .subscribe((data: IOrder[]) => {
+            this.orders.next(data);
+          });
+      });
   }
 }
