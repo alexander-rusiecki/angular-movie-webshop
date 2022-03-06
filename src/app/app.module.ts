@@ -23,6 +23,7 @@ import { ThrillerComponent } from './components/thriller/thriller.component';
 import { CategoryComponent } from './components/category/category.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AdminComponent } from './components/admin/admin.component';
     CategoryComponent,
     CheckoutComponent,
     AdminComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

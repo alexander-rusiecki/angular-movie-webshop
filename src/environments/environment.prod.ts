@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
-  allMoviesUrl:
+  moviesUrl:
     'https://medieinstitutet-wie-products.azurewebsites.net/api/products',
   categoriesUrl:
     'https://medieinstitutet-wie-products.azurewebsites.net/api/categories',
   searchMoviesUrl:
     'https://medieinstitutet-wie-products.azurewebsites.net/api/search',
-  createOrderUrl:
+  createOrdersUrl:
     'https://medieinstitutet-wie-products.azurewebsites.net/api/orders',
 };

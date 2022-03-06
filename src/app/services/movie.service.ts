@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { IMovie } from '@interfaces/movie';
 import { IMovieCategory } from '@interfaces/movieCategory';
-import { map, Subject } from 'rxjs';
+import { catchError, map, Subject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,8 @@ export class MovieService {
 
   getAllMovies() {
     this.http
-      .get<IMovie[]>(environment.allMoviesUrl)
+      .get<IMovie[]>(environment.moviesUrl)
+      .pipe(catchError(this.handleError))
       .subscribe((allMovies: IMovie[]) => {
         this.movies.next(allMovies);
       });
@@ -30,7 +31,8 @@ export class MovieService {
 
   getMovieById(id: number) {
     this.http
-      .get<IMovie[]>(environment.allMoviesUrl)
+      .get<IMovie[]>(environment.moviesUrl)
+      .pipe(catchError(this.handleError))
       .pipe(
         map((response) => response.find((movie: IMovie) => movie.id === id))
       )
@@ -42,6 +44,7 @@ export class MovieService {
   getMoviesByCategory(category: string) {
     this.http
       .get<IMovieCategory[]>(environment.categoriesUrl)
+      .pipe(catchError(this.handleError))
       .pipe(
         map((response) =>
           response.find((theCategory) => theCategory.name === category)
@@ -55,8 +58,22 @@ export class MovieService {
   searchMovie(searchTerm: string) {
     this.http
       .get<IMovie[]>(`${environment.searchMoviesUrl}?searchText=${searchTerm}`)
+      .pipe(catchError(this.handleError))
       .subscribe((webshopFoundMovies: any) => {
         this.search.next(webshopFoundMovies);
       });
+  }
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.error('An error occurred:', error.error);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, body was: `,
+        error.error
+      );
+    }
+    return throwError(
+      () => new Error('Something bad happened; please try again later.')
+    );
   }
 }

@@ -14,12 +14,11 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.boughtMovies = this.localStorageService.get('boughtMovies');
-
     this.totalPrice = this.boughtMovies.reduce((acc: number, curr: IMovie) => {
       return acc + curr.price;
     }, 0);
   }
-  remove(index: number): any {
+  remove(index: number): void {
     this.boughtMovies.splice(index, 1);
     this.totalPrice = this.boughtMovies.reduce((acc: number, curr: IMovie) => {
       return acc + curr.price;
@@ -27,7 +26,7 @@ export class CartComponent implements OnInit {
     this.localStorageService.set('boughtMovies', this.boughtMovies);
   }
 
-  clearCart() {
+  clearCart(): void {
     this.boughtMovies = [];
     this.localStorageService.set('boughtMovies', this.boughtMovies);
     this.localStorageService.clear('boughtMovies');

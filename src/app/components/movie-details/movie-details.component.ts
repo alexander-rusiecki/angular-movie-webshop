@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { IMovie } from '@interfaces/movie';
 import { LocalStorageService } from '@services/local-storage.service';
 import { MovieService } from '@services/movie.service';
@@ -21,7 +21,7 @@ export class MovieDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((param) => {
+    this.route.params.subscribe((param: Params) => {
       this.movieId = +param['id'];
       this.movieService.movie$.subscribe((webshopMovie: IMovie) => {
         this.selectedMovie = webshopMovie;
@@ -30,7 +30,7 @@ export class MovieDetailsComponent implements OnInit {
     });
     this.boughtMovies = this.localStorageService.get('boughtMovies');
   }
-  buyMovie(selectedMovie: any) {
+  buyMovie(selectedMovie: IMovie) {
     this.boughtMovies = [...this.boughtMovies, selectedMovie];
     this.localStorageService.set('boughtMovies', this.boughtMovies);
   }

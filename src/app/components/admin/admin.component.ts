@@ -20,7 +20,7 @@ export class AdminComponent implements OnInit {
     });
     this.adminService.getActiveOrders();
   }
-  deleteOrder(id: number) {
+  deleteOrder(id: number): void {
     this.adminService.deleteOrder(id);
   }
 }

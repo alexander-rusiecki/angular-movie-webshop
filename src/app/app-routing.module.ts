@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { MoviesComponent } from '@components/movies/movies.component';
+import { CategoryComponent } from '@components/category/category.component';
 import { CartComponent } from '@components/cart/cart.component';
 import { CheckoutComponent } from '@components/checkout/checkout.component';
 import { MovieDetailsComponent } from '@components/movie-details/movie-details.component';
-import { NotFoundComponent } from '@components/not-found/not-found.component';
 import { ActionComponent } from '@components/action/action.component';
 import { ThrillerComponent } from '@components/thriller/thriller.component';
 import { ComedyComponent } from '@components/comedy/comedy.component';
 import { SciFiComponent } from '@components/sci-fi/sci-fi.component';
-import { CategoryComponent } from '@components/category/category.component';
 import { AdminComponent } from '@components/admin/admin.component';
+import { NotFoundComponent } from '@components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: MoviesComponent },

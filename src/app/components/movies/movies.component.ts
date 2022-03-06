@@ -26,7 +26,7 @@ export class MoviesComponent implements OnInit {
     this.movieService.getAllMovies();
   }
   handleSubmit() {
-    this.movieService.search$.subscribe((webshopFoundMovies: any) => {
+    this.movieService.search$.subscribe((webshopFoundMovies: IMovie[]) => {
       this.foundMovies = webshopFoundMovies;
     });
 

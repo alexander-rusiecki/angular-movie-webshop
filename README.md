@@ -12,5 +12,5 @@
 - Search movies
 - Filter movies by category
 
-- Usage of local storage
-- Some basic unit test
+Usage of local storage  
+Some basic unit test

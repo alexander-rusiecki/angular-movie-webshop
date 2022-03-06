@@ -7,7 +7,6 @@ import {
 import { environment } from '@environments/environment';
 import { catchError, Subject, throwError } from 'rxjs';
 import { Order } from '@models/order';
-import { IOrder } from '@interfaces/order';
 
 const httpHeaders = {
   headers: new HttpHeaders({
@@ -23,6 +22,7 @@ export class OrderService {
   order$ = this.order.asObservable();
 
   constructor(private http: HttpClient) {}
+
   createOrder(order: Order) {
     this.http
       .post<any>(environment.createOrderUrl, order, httpHeaders)
