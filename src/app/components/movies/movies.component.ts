@@ -27,10 +27,10 @@ export class MoviesComponent implements OnInit {
   }
   handleSubmit() {
     this.movieService.search$.subscribe((webshopFoundMovies: IMovie[]) => {
-      this.foundMovies = webshopFoundMovies;
+      this.movies = webshopFoundMovies;
     });
 
     this.movieService.searchMovie(this.searchMovieForm.value.movie);
-    this.movies = this.foundMovies;
+    this.searchMovieForm.reset();
   }
 }
