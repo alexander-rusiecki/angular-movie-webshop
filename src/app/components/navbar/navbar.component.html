@@ -75,7 +75,12 @@
             routerLink="/cart"
             routerLinkActive="active"
           >
-            <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon>
+            <fa-icon
+              [ngStyle]="{
+                color: boughtMoviesAmount > 0 ? '#2a9fd6' : null
+              }"
+              [icon]="['fas', 'cart-arrow-down']"
+            ></fa-icon>
             <div class="abs" *ngIf="boughtMoviesAmount > 0">
               {{ boughtMoviesAmount }}
             </div>

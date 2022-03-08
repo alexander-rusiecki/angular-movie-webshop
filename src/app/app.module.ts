@@ -16,10 +16,6 @@ import { CartComponent } from './components/cart/cart.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { MoviesComponent } from './components/movies/movies.component';
-import { ActionComponent } from './components/action/action.component';
-import { ComedyComponent } from './components/comedy/comedy.component';
-import { SciFiComponent } from './components/sci-fi/sci-fi.component';
-import { ThrillerComponent } from './components/thriller/thriller.component';
 import { CategoryComponent } from './components/category/category.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -33,10 +29,7 @@ import { FooterComponent } from './components/footer/footer.component';
     NotFoundComponent,
     MovieDetailsComponent,
     MoviesComponent,
-    ActionComponent,
-    ComedyComponent,
-    SciFiComponent,
-    ThrillerComponent,
+
     CategoryComponent,
     CheckoutComponent,
     AdminComponent,

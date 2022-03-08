@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { IMovie } from '@interfaces/movie';
 import { IMovieCategory } from '@interfaces/movieCategory';
-import { catchError, map, Subject, throwError } from 'rxjs';
+import { catchError, map, mergeMap, Subject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +13,10 @@ export class MovieService {
   movies$ = this.movies.asObservable();
   private movie = new Subject<IMovie>();
   movie$ = this.movie.asObservable();
-  private category = new Subject<any>();
+  private category = new Subject<IMovieCategory>();
   category$ = this.category.asObservable();
+  private categoryId = new Subject<number>();
+  categoryId$ = this.categoryId.asObservable();
   private search = new Subject<any>();
   search$ = this.search.asObservable();
 
@@ -50,8 +52,21 @@ export class MovieService {
           response.find((theCategory) => theCategory.name === category)
         )
       )
-      .subscribe((webshopCategory) => {
+      .subscribe((webshopCategory: any) => {
         this.category.next(webshopCategory);
+      });
+  }
+  getMovieCategoryByMovieId(id: number) {
+    this.http
+      .get<any[]>(environment.categoriesUrl)
+      .pipe(catchError(this.handleError))
+      .pipe(
+        map((response) =>
+          response.find((theCategoryId) => theCategoryId.id === id)
+        )
+      )
+      .subscribe((webshopCategoryById) => {
+        this.category.next(webshopCategoryById);
       });
   }
 

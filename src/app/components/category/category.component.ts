@@ -11,7 +11,9 @@ import { MovieService } from '@services/movie.service';
 })
 export class CategoryComponent implements OnInit {
   category: string = '';
-  moviesWithRightCategory: IMovie[] = [];
+  categoryId: number = 0;
+  moviesWithRightCategoryId: any[] = [];
+  filteredMovies: IMovie[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -22,10 +24,20 @@ export class CategoryComponent implements OnInit {
     this.route.params.subscribe((param) => {
       this.category = param['category'];
       this.movieService.category$.subscribe((webshopCategory: any) => {
-        this.moviesWithRightCategory = webshopCategory;
+        this.categoryId = webshopCategory.id;
       });
-
       this.movieService.getMoviesByCategory(this.category);
     });
+    this.movieService.movies$.subscribe((webshopMovies: any) => {
+      this.moviesWithRightCategoryId = webshopMovies;
+      for (const movie of this.moviesWithRightCategoryId) {
+        for (const prodCat of movie.productCategory) {
+          if (prodCat.categoryId === this.categoryId) {
+            this.filteredMovies.push(movie);
+          }
+        }
+      }
+    });
+    this.movieService.getAllMovies();
   }
 }

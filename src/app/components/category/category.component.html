@@ -1,1 +1,16 @@
-{{ moviesWithRightCategory | json }}
+<div class="d-flex flex-wrap mx-auto" style="width: 90%">
+  <ng-container *ngFor="let filteredMovie of filteredMovies">
+    <a routerLink="/movies/{{ filteredMovie.id }}">
+      <div class="card mt-5 mx-3" style="width: 18rem">
+        <img
+          [src]="filteredMovie.imageUrl"
+          class="card-img-top"
+          alt="{{ filteredMovie.name }}"
+        />
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ filteredMovie.name }}</h5>
+        </div>
+      </div>
+    </a>
+  </ng-container>
+</div>

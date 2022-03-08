@@ -7,6 +7,7 @@ import {
 import { environment } from '@environments/environment';
 import { catchError, Subject, throwError } from 'rxjs';
 import { Order } from '@models/order';
+import { IOrder } from '@interfaces/order';
 
 const httpHeaders = {
   headers: new HttpHeaders({
@@ -25,9 +26,9 @@ export class OrderService {
 
   createOrder(order: Order) {
     this.http
-      .post<any>(environment.createOrderUrl, order, httpHeaders)
+      .post<IOrder>(environment.createOrderUrl, order, httpHeaders)
       .pipe(catchError(this.handleError))
-      .subscribe((myOrder: any) => {
+      .subscribe((myOrder: IOrder) => {
         this.order.next(myOrder);
       });
   }

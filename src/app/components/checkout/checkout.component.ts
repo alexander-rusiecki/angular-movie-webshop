@@ -62,10 +62,10 @@ export class CheckoutComponent implements OnInit {
       this.orderForm.value.payment,
       this.totalPrice,
       this.orderRow
-      // this.boughtMovies.map((movie) => new OrderRow(movie.id, 1))
     );
     this.localStorageService.clear('boughtMovies');
     this.boughtMovies = [];
+    this.orderForm.reset();
 
     this.orderService.order$.subscribe((placedOrder: any) => {
       this.order = placedOrder;
