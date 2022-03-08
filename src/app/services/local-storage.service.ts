@@ -1,19 +1,28 @@
 import { Injectable } from '@angular/core';
 import { IMovie } from '@interfaces/movie';
-import { Movie } from '@models/movie';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStorageService {
   localStorage: Storage;
-  public cartItemList: Movie[] = [];
-  public productlist = new BehaviorSubject<Movie[]>([]);
-  public lsList = new BehaviorSubject<Movie[]>([]);
+
+  private localStorageCart = new Subject<IMovie[]>();
+  localStorageCart$ = this.localStorageCart.asObservable();
 
   constructor() {
     this.localStorage = window.localStorage;
+  }
+  getBoughtMoviesAmount(): void {
+    let moviesInLs = JSON.parse(this.localStorage.getItem('boughtMovies')!);
+    this.localStorageCart.next(moviesInLs);
+
+    // .subscribe(
+    //   (moviesInLs: IMovie[]) => {
+    //     this.localStorageCart.next(moviesInLs);
+    //   }
+    // );
   }
 
   get(key: string): IMovie[] | [] {
@@ -27,16 +36,14 @@ export class LocalStorageService {
 
   set(key: string, data: IMovie[]): void {
     this.localStorage.setItem(key, JSON.stringify(data));
+    this.getBoughtMoviesAmount();
   }
 
   clear(key: string): void {
     this.localStorage.removeItem(key);
   }
 
-  getBoughtMoviesAmount(key: string): number {
-    return JSON.parse(this.localStorage.getItem(key)!).length;
-  }
-  getProducts(): Observable<Movie[]> {
-    return this.productlist.asObservable();
-  }
+  // getProducts(): Observable<Movie[]> {
+  //   return this.productlist.asObservable();
+  // }
 }

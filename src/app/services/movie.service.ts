@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { IMovie } from '@interfaces/movie';
 import { IMovieCategory } from '@interfaces/movieCategory';
-import { catchError, map, mergeMap, Subject, throwError } from 'rxjs';
+import { catchError, map, Subject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +36,9 @@ export class MovieService {
       .get<IMovie[]>(environment.moviesUrl)
       .pipe(catchError(this.handleError))
       .pipe(
-        map((response) => response.find((movie: IMovie) => movie.id === id))
+        map((response: IMovie[]) =>
+          response.find((movie: IMovie) => movie.id === id)
+        )
       )
       .subscribe((movieWithCorrectId: any) => {
         this.movie.next(movieWithCorrectId);
@@ -48,8 +50,10 @@ export class MovieService {
       .get<IMovieCategory[]>(environment.categoriesUrl)
       .pipe(catchError(this.handleError))
       .pipe(
-        map((response) =>
-          response.find((theCategory) => theCategory.name === category)
+        map((response: IMovieCategory[]) =>
+          response.find(
+            (theCategory: IMovieCategory) => theCategory.name === category
+          )
         )
       )
       .subscribe((webshopCategory: any) => {
@@ -74,7 +78,7 @@ export class MovieService {
     this.http
       .get<IMovie[]>(`${environment.searchMoviesUrl}?searchText=${searchTerm}`)
       .pipe(catchError(this.handleError))
-      .subscribe((webshopFoundMovies: any) => {
+      .subscribe((webshopFoundMovies: IMovie[]) => {
         this.search.next(webshopFoundMovies);
       });
   }

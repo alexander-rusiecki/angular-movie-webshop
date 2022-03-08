@@ -1,3 +1,4 @@
+import { LocalStorageService } from '@services/local-storage.service';
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
@@ -22,7 +23,10 @@ export class OrderService {
   private order = new Subject<Order>();
   order$ = this.order.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) {}
 
   createOrder(order: Order) {
     this.http
@@ -30,6 +34,7 @@ export class OrderService {
       .pipe(catchError(this.handleError))
       .subscribe((myOrder: IOrder) => {
         this.order.next(myOrder);
+        this.localStorageService.set('boughtMovies', []);
       });
   }
   private handleError(error: HttpErrorResponse) {
