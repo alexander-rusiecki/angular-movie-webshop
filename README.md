@@ -1,4 +1,4 @@
-# Movie webshop built with Angular 13
+# Movie webshop built with Angular 13 and Bootstrap (Bootswatch)
 
 [Link](https://alexander-rusiecki.github.io/angular-movie-webshop/)
 
