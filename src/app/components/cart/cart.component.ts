@@ -17,11 +17,7 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.localStorageService.localStorageCart$.subscribe(
-      (cartMovies: IMovie[]) => {
-        this.boughtMovies = cartMovies;
-      }
-    );
+    this.boughtMovies = this.localStorageService.get('boughtMovies');
     this.localStorageService.getBoughtMoviesAmount();
     this.sharedService.totalPrice$.subscribe((priceFromService: number) => {
       this.totalPrice = priceFromService;
@@ -37,6 +33,8 @@ export class CartComponent implements OnInit {
   }
 
   clearCart(key: string): void {
+    this.boughtMovies = [];
+    this.localStorageService.set(key, this.boughtMovies);
     this.localStorageService.removeItem(key);
   }
 }
