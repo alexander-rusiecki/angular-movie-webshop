@@ -1,4 +1,53 @@
-<div *ngFor="let order of activOrders; index as i">
+<table class="table table-hover mx-auto">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">ID</th>
+      <th scope="col">Price</th>
+      <th scope="col">realese year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-active mb-3" *ngFor="let order of activOrders; index as i">
+      <th scope="row">{{ order.createdBy }}</th>
+      <td>{{ order.totalPrice | currency: "SEK":"symbol" }}</td>
+      <td>{{ order.paymentMethod }}</td>
+
+      <td>
+        <fa-icon
+          (click)="deleteOrder(order.id)"
+          [icon]="['fas', 'trash-alt']"
+        ></fa-icon>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- <div *ngFor="let order of activOrders; index as i">
+  <table class="table table-hover mx-auto">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">realese year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-active mb-3"
+        *ngFor="let boughtMovie of boughtMovies; index as i"
+      >
+        <th scope="row">{{ boughtMovie.name }}</th>
+        <td>{{ boughtMovie.price | currency: "SEK":"symbol" }}</td>
+        <td>{{ boughtMovie.year }}</td>
+        <td>
+          <fa-icon (click)="remove(i)" [icon]="['fas', 'trash-alt']"></fa-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
   <div class="card border-dark mb-3 d-flex flex-wrap mt-5 mx-auto">
     <div class="card-header">{{ order.id }}</div>
     <div class="card-body">
@@ -15,3 +64,52 @@
     </button>
   </div>
 </div>
+<div *ngIf="boughtMovies.length > 0; else emptyCart">
+  <table class="table table-hover mx-auto">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">realese year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-active mb-3"
+        *ngFor="let boughtMovie of boughtMovies; index as i"
+      >
+        <th scope="row">{{ boughtMovie.name }}</th>
+        <td>{{ boughtMovie.price | currency: "SEK":"symbol" }}</td>
+        <td>{{ boughtMovie.year }}</td>
+        <td>
+          <fa-icon (click)="remove(i)" [icon]="['fas', 'trash-alt']"></fa-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Total price: {{ totalPrice | currency: "SEK":"symbol" }}</h3>
+
+  <div class="text-center mt-5">
+    <a
+      class="btn btn-success"
+      aria-current="page"
+      routerLink=""
+      routerLinkActive="active"
+      >continue shopping</a
+    >
+    <a
+      class="btn btn-primary mx-1"
+      aria-current="page"
+      routerLink="/checkout"
+      routerLinkActive="active"
+      >proceed to checkout</a
+    >
+    <button
+      (click)="clearCart('boughtMovies')"
+      type="button"
+      class="btn btn-primary"
+    >
+      Clear cart
+    </button>
+  </div>
+</div> -->

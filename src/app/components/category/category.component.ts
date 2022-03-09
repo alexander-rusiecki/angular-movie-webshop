@@ -21,8 +21,6 @@ export class CategoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('hej');
-
     this.route.params.subscribe((param) => {
       this.category = param['category'];
       this.movieService.category$.subscribe((webshopCategory: any) => {
