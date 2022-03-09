@@ -20,12 +20,6 @@ export class LocalStorageService {
       this.localStorage.getItem('boughtMovies')!
     );
     this.localStorageCart.next(this.moviesInLocalStorage);
-
-    // .subscribe(
-    //   (moviesInLs: IMovie[]) => {
-    //     this.localStorageCart.next(moviesInLs);
-    //   }
-    // );
   }
   updateLocalStorage(key: string, newMovie: IMovie): void {
     this.moviesInLocalStorage = JSON.parse(this.localStorage.getItem(key)!);
@@ -38,7 +32,7 @@ export class LocalStorageService {
   }
   removeItem(key: string): void {
     this.localStorage.removeItem(key);
-    this.moviesInLocalStorage = JSON.parse(this.localStorage.getItem(key)!);
+    // this.moviesInLocalStorage = JSON.parse(this.localStorage.getItem(key)!);
     this.localStorageCart.next(this.moviesInLocalStorage);
   }
 
