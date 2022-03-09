@@ -11,7 +11,7 @@
         <h6>Price: {{ selectedMovie.price | currency: "SEK":"symbol" }}</h6>
         <div class="mt-5">
           <button
-            (click)="buyMovie(selectedMovie)"
+            (click)="addToCart('boughtMovies', selectedMovie)"
             type="button"
             class="btn btn-outline-primary mx-1"
           >

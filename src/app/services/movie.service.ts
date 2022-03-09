@@ -60,19 +60,6 @@ export class MovieService {
         this.category.next(webshopCategory);
       });
   }
-  getMovieCategoryByMovieId(id: number) {
-    this.http
-      .get<any[]>(environment.categoriesUrl)
-      .pipe(catchError(this.handleError))
-      .pipe(
-        map((response) =>
-          response.find((theCategoryId) => theCategoryId.id === id)
-        )
-      )
-      .subscribe((webshopCategoryById) => {
-        this.category.next(webshopCategoryById);
-      });
-  }
 
   searchMovie(searchTerm: string) {
     this.http

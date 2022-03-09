@@ -38,7 +38,11 @@
       routerLinkActive="active"
       >proceed to checkout</a
     >
-    <button (click)="clearCart()" type="button" class="btn btn-primary">
+    <button
+      (click)="clearCart('boughtMovies')"
+      type="button"
+      class="btn btn-primary"
+    >
       Clear cart
     </button>
   </div>

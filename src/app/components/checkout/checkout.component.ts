@@ -1,12 +1,10 @@
 import { OrderService } from '@services/order.service';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { IMovie } from '@interfaces/movie';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Order } from '@models/order';
 import { OrderRow } from '@models/order-row';
-import { IOrder } from '@interfaces/order';
-import { IOrderRow } from '@interfaces/order-row';
 
 @Component({
   selector: 'app-checkout',
@@ -63,7 +61,7 @@ export class CheckoutComponent implements OnInit {
       this.totalPrice,
       this.orderRow
     );
-    this.localStorageService.clear('boughtMovies');
+    this.localStorageService.removeItem('boughtMovies');
     this.boughtMovies = [];
     this.orderForm.reset();
 

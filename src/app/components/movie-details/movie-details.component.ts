@@ -30,8 +30,7 @@ export class MovieDetailsComponent implements OnInit {
     });
     this.boughtMovies = this.localStorageService.get('boughtMovies');
   }
-  buyMovie(selectedMovie: IMovie) {
-    this.boughtMovies = [...this.boughtMovies, selectedMovie];
-    this.localStorageService.set('boughtMovies', this.boughtMovies);
+  addToCart(key: string, movie: IMovie) {
+    this.localStorageService.updateLocalStorage(key, movie);
   }
 }

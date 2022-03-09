@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class LocalStorageService {
   localStorage: Storage;
+  moviesInLocalStorage: IMovie[] = [];
 
   private localStorageCart = new Subject<IMovie[]>();
   localStorageCart$ = this.localStorageCart.asObservable();
@@ -15,14 +16,30 @@ export class LocalStorageService {
     this.localStorage = window.localStorage;
   }
   getBoughtMoviesAmount(): void {
-    let moviesInLs = JSON.parse(this.localStorage.getItem('boughtMovies')!);
-    this.localStorageCart.next(moviesInLs);
+    this.moviesInLocalStorage = JSON.parse(
+      this.localStorage.getItem('boughtMovies')!
+    );
+    this.localStorageCart.next(this.moviesInLocalStorage);
 
     // .subscribe(
     //   (moviesInLs: IMovie[]) => {
     //     this.localStorageCart.next(moviesInLs);
     //   }
     // );
+  }
+  updateLocalStorage(key: string, newMovie: IMovie): void {
+    this.moviesInLocalStorage = JSON.parse(this.localStorage.getItem(key)!);
+    this.moviesInLocalStorage = [
+      ...JSON.parse(this.localStorage.getItem(key)!),
+      newMovie,
+    ];
+    this.localStorage.setItem(key, JSON.stringify(this.moviesInLocalStorage));
+    this.localStorageCart.next(this.moviesInLocalStorage);
+  }
+  removeItem(key: string): void {
+    this.localStorage.removeItem(key);
+    this.moviesInLocalStorage = JSON.parse(this.localStorage.getItem(key)!);
+    this.localStorageCart.next(this.moviesInLocalStorage);
   }
 
   get(key: string): IMovie[] | [] {
@@ -38,12 +55,4 @@ export class LocalStorageService {
     this.localStorage.setItem(key, JSON.stringify(data));
     this.getBoughtMoviesAmount();
   }
-
-  clear(key: string): void {
-    this.localStorage.removeItem(key);
-  }
-
-  // getProducts(): Observable<Movie[]> {
-  //   return this.productlist.asObservable();
-  // }
 }

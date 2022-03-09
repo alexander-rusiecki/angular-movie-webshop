@@ -7,14 +7,22 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class SharedService {
+  moviesInLocalStorage: IMovie[] = [];
+  total: number = 0;
+
   private totalPrice = new Subject<number>();
   totalPrice$ = this.totalPrice.asObservable();
   constructor() {}
   getTotalPrice() {
-    let b = JSON.parse(localStorage.getItem('boughtMovies')!);
-    let price = b.reduce((acc: number, curr: IMovie) => {
-      return acc + curr.price;
-    }, 0);
-    this.totalPrice.next(price);
+    this.moviesInLocalStorage = JSON.parse(
+      localStorage.getItem('boughtMovies')!
+    );
+    this.total = this.moviesInLocalStorage.reduce(
+      (acc: number, curr: IMovie) => {
+        return acc + curr.price;
+      },
+      0
+    );
+    this.totalPrice.next(this.total);
   }
 }
