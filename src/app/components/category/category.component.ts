@@ -21,23 +21,25 @@ export class CategoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('hej');
+
     this.route.params.subscribe((param) => {
       this.category = param['category'];
       this.movieService.category$.subscribe((webshopCategory: any) => {
         this.categoryId = webshopCategory.id;
       });
       this.movieService.getMoviesByCategory(this.category);
-    });
-    this.movieService.movies$.subscribe((webshopMovies: any) => {
-      this.moviesWithRightCategoryId = webshopMovies;
-      for (const movie of this.moviesWithRightCategoryId) {
-        for (const prodCat of movie.productCategory) {
-          if (prodCat.categoryId === this.categoryId) {
-            this.filteredMovies.push(movie);
+      this.movieService.movies$.subscribe((webshopMovies: any) => {
+        this.moviesWithRightCategoryId = webshopMovies;
+        for (const movie of this.moviesWithRightCategoryId) {
+          for (const prodCat of movie.productCategory) {
+            if (prodCat.categoryId === this.categoryId) {
+              this.filteredMovies.push(movie);
+            }
           }
         }
-      }
+      });
+      this.movieService.getAllMovies();
     });
-    this.movieService.getAllMovies();
   }
 }

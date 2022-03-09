@@ -12,9 +12,9 @@ import { NotFoundComponent } from '@components/not-found/not-found.component';
 const routes: Routes = [
   { path: '', component: MoviesComponent },
   { path: 'categories/:category', component: CategoryComponent },
+  { path: 'movies/:id', component: MovieDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'movies/:id', component: MovieDetailsComponent },
   { path: 'admin', component: AdminComponent },
   { path: '**', component: NotFoundComponent },
 ];

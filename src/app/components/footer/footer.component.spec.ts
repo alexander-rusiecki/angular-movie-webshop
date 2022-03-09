@@ -8,9 +8,8 @@ describe('FooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
-    })
-    .compileComponents();
+      declarations: [FooterComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +20,13 @@ describe('FooterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should render footer text', () => {
+    const fixture = TestBed.createComponent(FooterComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('footer p')?.textContent).toContain(
+      '© 2021 Alexander Rusiecki'
+    );
   });
 });
