@@ -4,64 +4,67 @@
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Price</th>
-        <th scope="col">realese year</th>
+        <th scope="col">added</th>
+        <th scope="col">remove from cart</th>
       </tr>
     </thead>
     <tbody>
       <tr
-        class="table-active mb-3"
+        class="table-active"
         *ngFor="let boughtMovie of boughtMovies; index as i"
       >
         <th scope="row">{{ boughtMovie.name }}</th>
         <td>{{ boughtMovie.price | currency: "SEK":"symbol" }}</td>
-        <td>{{ boughtMovie.year }}</td>
+        <td>{{ boughtMovie.added }}</td>
         <td>
           <fa-icon (click)="remove(i)" [icon]="['fas', 'trash-alt']"></fa-icon>
         </td>
       </tr>
     </tbody>
   </table>
-  <h3>Total price: {{ totalPrice | currency: "SEK":"symbol" }}</h3>
-
-  <div class="text-center mt-5">
-    <a
-      class="btn btn-success"
-      aria-current="page"
-      routerLink=""
-      routerLinkActive="active"
-      >continue shopping</a
-    >
-    <a
-      class="btn btn-primary mx-1"
-      aria-current="page"
-      routerLink="/checkout"
-      routerLinkActive="active"
-      >proceed to checkout</a
-    >
-    <button
-      (click)="clearCart('boughtMovies')"
-      type="button"
-      class="btn btn-primary"
-    >
-      Clear cart
-    </button>
+  <div class="last-buttons">
+    <h4 class="text-center">
+      Total price: {{ totalPrice | currency: "SEK":"symbol" }}
+      <div class="text-center mt-5">
+        <a
+          class="btn btn-success"
+          aria-current="page"
+          routerLink=""
+          routerLinkActive="active"
+          >continue shopping</a
+        >
+        <a
+          class="btn btn-primary mx-1"
+          aria-current="page"
+          routerLink="/checkout"
+          routerLinkActive="active"
+          >proceed to checkout</a
+        >
+        <button
+          (click)="clearCart('boughtMovies')"
+          type="button"
+          class="btn btn-primary"
+        >
+          Clear cart
+        </button>
+      </div>
+    </h4>
   </div>
 </div>
 
 <ng-template #emptyCart>
-  <div class="card bg-light mb-3 mt-5 mx-auto" style="width: 90%">
-    <div class="card-body">
-      <h4 class="card-title">Your cart is empty</h4>
-      <p class="card-text">Continue shopping or welcome back soon!</p>
-    </div>
-    <div class="text-center mt-5">
-      <a
-        class="btn btn-outline-primary mx-1"
-        aria-current="page"
-        routerLink=""
-        routerLinkActive="active"
-        >Start shopping</a
-      >
-    </div>
+  <div
+    class="empty d-flex justify-content-center align-items-center flex-column text-center w-100"
+  >
+    <h4>Your cart is empty</h4>
+    <p>Continue shopping or welcome back soon!</p>
+
+    <a
+      class="btn btn-outline-primary mx-1"
+      aria-current="page"
+      routerLink=""
+      routerLinkActive="active"
+      >Start shopping</a
+    >
   </div>
 </ng-template>
