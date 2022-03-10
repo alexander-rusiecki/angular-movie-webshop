@@ -1,4 +1,4 @@
-import { IOrderRow } from './order-row';
+import { IOrderRow } from './OrderRowInterface';
 
 export interface IOrder {
   id: number;

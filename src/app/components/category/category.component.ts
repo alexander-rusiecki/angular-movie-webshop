@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IMovie } from '@interfaces/movie';
 import { MovieService } from '@services/movie.service';
+import { IMovie } from '@interfaces/MovieInterface';
+import { IMovieCategory } from '@interfaces/MovieCategoryInterface';
 
 @Component({
   selector: 'app-category',
@@ -22,11 +23,13 @@ export class CategoryComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
       this.category = param['category'];
-      this.movieService.category$.subscribe((webshopCategory: any) => {
-        this.categoryId = webshopCategory.id;
-      });
+      this.movieService.category$.subscribe(
+        (webshopCategory: IMovieCategory) => {
+          this.categoryId = webshopCategory.id;
+        }
+      );
       this.movieService.getMoviesByCategory(this.category);
-      this.movieService.movies$.subscribe((webshopMovies: any) => {
+      this.movieService.movies$.subscribe((webshopMovies: IMovie[]) => {
         this.moviesWithRightCategoryId = webshopMovies;
         for (const movie of this.moviesWithRightCategoryId) {
           for (const prodCat of movie.productCategory) {

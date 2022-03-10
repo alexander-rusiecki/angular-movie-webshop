@@ -1,4 +1,4 @@
-import { IMovieCategory } from '@interfaces/movieCategory';
+import { IMovieCategory } from './MovieCategoryInterface';
 
 export interface IMovie {
   id: number;

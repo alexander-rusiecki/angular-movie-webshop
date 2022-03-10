@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
-import { IOrder } from '@interfaces/order';
+import { IOrder } from '@interfaces/OrderInterface';
 import { catchError, Subject, throwError } from 'rxjs';
 
 @Injectable({

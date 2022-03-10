@@ -1,4 +1,4 @@
-import { IMovie } from './../app/interfaces/movie';
+import { IMovie } from '@interfaces/MovieInterface';
 
 const mockMovie1: IMovie = {
   id: 1,

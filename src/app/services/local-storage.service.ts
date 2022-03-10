@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IMovie } from '@interfaces/movie';
+import { IMovie } from '@interfaces/MovieInterface';
 import { Subject } from 'rxjs';
 
 @Injectable({

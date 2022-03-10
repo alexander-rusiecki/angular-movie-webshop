@@ -1,4 +1,4 @@
-import { IMovie } from '@interfaces/movie';
+import { IMovie } from '@interfaces/MovieInterface';
 import { Injectable } from '@angular/core';
 
 import { Subject } from 'rxjs';

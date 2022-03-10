@@ -1,10 +1,10 @@
-import { OrderService } from '@services/order.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { IMovie } from '@interfaces/movie';
+import { OrderService } from '@services/order.service';
 import { LocalStorageService } from '@services/local-storage.service';
-import { Order } from '@models/order';
-import { OrderRow } from '@models/order-row';
+import { Order } from '@models/Order';
+import { OrderRow } from '@models/OrderRow';
+import { IMovie } from '@interfaces/MovieInterface';
 
 @Component({
   selector: 'app-checkout',
@@ -18,9 +18,10 @@ export class CheckoutComponent implements OnInit {
   orderRow: OrderRow[] = [];
   amount: number = 0;
   orderForm = this.fb.group({
-    name: [''],
-    payment: [''],
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    payment: ['', [Validators.required]],
   });
+  isOrderSent: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -36,39 +37,42 @@ export class CheckoutComponent implements OnInit {
   }
 
   handleSubmit() {
-    for (let i = 0; i < this.boughtMovies.length; i++) {
-      if (
-        !this.orderRow.some(
-          (movie) => movie.productId === this.boughtMovies[i].id
-        )
-      ) {
-        this.orderRow.push({
-          productId: this.boughtMovies[i].id,
-          amount: this.amount + 1,
-        });
-      } else {
-        for (let j = 0; j < this.orderRow.length; j++) {
-          if (this.orderRow[j].productId === this.boughtMovies[i].id) {
-            this.orderRow[j].amount++;
+    if (this.boughtMovies.length) {
+      for (let i = 0; i < this.boughtMovies.length; i++) {
+        if (
+          !this.orderRow.some(
+            (movie) => movie.productId === this.boughtMovies[i].id
+          )
+        ) {
+          this.orderRow.push({
+            productId: this.boughtMovies[i].id,
+            amount: this.amount + 1,
+          });
+        } else {
+          for (let j = 0; j < this.orderRow.length; j++) {
+            if (this.orderRow[j].productId === this.boughtMovies[i].id) {
+              this.orderRow[j].amount++;
+            }
           }
         }
       }
+      this.order = new Order(
+        new Date().toISOString().split('.')[0],
+        this.orderForm.value.name,
+        this.orderForm.value.payment,
+        this.totalPrice,
+        this.orderRow
+      );
+      this.localStorageService.removeItem('boughtMovies');
+      this.boughtMovies = [];
+      this.orderForm.reset();
+
+      this.orderService.order$.subscribe((placedOrder: Order) => {
+        this.order = placedOrder;
+      });
+
+      this.orderService.createOrder(this.order);
+      this.isOrderSent = true;
     }
-    this.order = new Order(
-      new Date().toISOString().split('.')[0],
-      this.orderForm.value.name,
-      this.orderForm.value.payment,
-      this.totalPrice,
-      this.orderRow
-    );
-    this.localStorageService.removeItem('boughtMovies');
-    this.boughtMovies = [];
-    this.orderForm.reset();
-
-    this.orderService.order$.subscribe((placedOrder: any) => {
-      this.order = placedOrder;
-    });
-
-    this.orderService.createOrder(this.order);
   }
 }

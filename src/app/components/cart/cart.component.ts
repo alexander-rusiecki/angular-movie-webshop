@@ -1,7 +1,7 @@
+import { Component, OnInit } from '@angular/core';
 import { SharedService } from '@services/shared.service';
 import { LocalStorageService } from '@services/local-storage.service';
-import { Component, OnInit } from '@angular/core';
-import { IMovie } from '@interfaces/movie';
+import { IMovie } from '@interfaces/MovieInterface';
 
 @Component({
   selector: 'app-cart',
@@ -35,6 +35,5 @@ export class CartComponent implements OnInit {
   clearCart(key: string): void {
     this.boughtMovies = [];
     this.localStorageService.set(key, this.boughtMovies);
-    this.localStorageService.removeItem(key);
   }
 }

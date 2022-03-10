@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
-import { IMovie } from '@interfaces/movie';
-import { IMovieCategory } from '@interfaces/movieCategory';
+import { IMovie } from '@interfaces/MovieInterface';
+import { IMovieCategory } from '@interfaces/MovieCategoryInterface';
 import { catchError, map, Subject, throwError } from 'rxjs';
 import {
   mockMovie1,

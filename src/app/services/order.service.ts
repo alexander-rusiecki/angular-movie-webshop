@@ -7,8 +7,8 @@ import {
 } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { catchError, Subject, throwError } from 'rxjs';
-import { Order } from '@models/order';
-import { IOrder } from '@interfaces/order';
+import { Order } from '@models/Order';
+import { IOrder } from '@interfaces/OrderInterface';
 
 const httpHeaders = {
   headers: new HttpHeaders({

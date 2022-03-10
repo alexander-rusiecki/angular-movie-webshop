@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IMovie } from '@interfaces/movie';
-import { MovieService } from '@services/movie.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MovieService } from '@services/movie.service';
+import { IMovie } from '@interfaces/MovieInterface';
 
 @Component({
   selector: 'app-movies',
@@ -22,14 +22,13 @@ export class MoviesComponent implements OnInit {
     this.movieService.movies$.subscribe((webshopMovies: IMovie[]) => {
       this.movies = webshopMovies;
     });
-
     this.movieService.getAllMovies();
   }
+
   handleSubmit() {
     this.movieService.search$.subscribe((webshopFoundMovies: IMovie[]) => {
       this.movies = webshopFoundMovies;
     });
-
     this.movieService.searchMovie(this.searchMovieForm.value.movie);
     this.searchMovieForm.reset();
   }

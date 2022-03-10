@@ -1,6 +1,6 @@
 <form
   [formGroup]="orderForm"
-  class="d-flex flex-column w-50"
+  class="d-flex flex-column w-50 mx-auto"
   (ngSubmit)="handleSubmit()"
 >
   <input
@@ -10,6 +10,27 @@
     placeholder="enter your name"
     id="name"
   />
+  <div
+    *ngIf="
+      orderForm.get('name')?.invalid &&
+      (orderForm.get('name')?.touched || orderForm.get('name')?.dirty)
+    "
+  >
+    <div
+      *ngIf="orderForm.get('name')?.errors?.['required']"
+      class="text-danger"
+    >
+      Please enter your name
+    </div>
+
+    <div
+      *ngIf="orderForm.get('name')?.errors?.['minlength']"
+      class="text-danger"
+    >
+      Your name must include 3 characters
+    </div>
+  </div>
+
   <select
     formControlName="payment"
     id="payment"
@@ -21,5 +42,6 @@
     <option value="Mastercard">Mastercard</option>
     <option value="Klarna">Klarna</option>
   </select>
+
   <button class="btn btn-outline-primary my-5" type="submit">Buy</button>
 </form>

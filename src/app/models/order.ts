@@ -1,4 +1,4 @@
-import { OrderRow } from '@models/order-row';
+import { OrderRow } from '@models/OrderRow';
 export class Order {
   companyId: number;
   created: string;

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { IOrder } from '@interfaces/order';
+import { IOrder } from '@interfaces/OrderInterface';
 import { AdminService } from '@services/admin.service';
 
 @Component({
