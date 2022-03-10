@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IMovie } from '@interfaces/movie';
 import { MovieService } from '@services/movie.service';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-movies',

@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { IOrder } from '@interfaces/order';
 import { AdminService } from '@services/admin.service';
-import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-admin',

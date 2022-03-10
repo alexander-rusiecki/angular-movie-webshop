@@ -29,7 +29,6 @@ import { FooterComponent } from './components/footer/footer.component';
     NotFoundComponent,
     MovieDetailsComponent,
     MoviesComponent,
-
     CategoryComponent,
     CheckoutComponent,
     AdminComponent,

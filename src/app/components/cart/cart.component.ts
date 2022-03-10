@@ -1,4 +1,4 @@
-import { SharedService } from './../../services/shared.service';
+import { SharedService } from '@services/shared.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { IMovie } from '@interfaces/movie';
