@@ -22,7 +22,7 @@ export class MovieService {
 
   constructor(private http: HttpClient) {}
 
-  getAllMovies() {
+  getAllMovies(): void {
     this.http
       .get<IMovie[]>(environment.moviesUrl)
       .pipe(catchError(this.handleError))
@@ -31,7 +31,7 @@ export class MovieService {
       });
   }
 
-  getMovieById(id: number) {
+  getMovieById(id: number): void {
     this.http
       .get<IMovie[]>(environment.moviesUrl)
       .pipe(catchError(this.handleError))
@@ -45,7 +45,7 @@ export class MovieService {
       });
   }
 
-  getMoviesByCategory(category: string) {
+  getMoviesByCategory(category: string): void {
     this.http
       .get<IMovieCategory[]>(environment.categoriesUrl)
       .pipe(catchError(this.handleError))
@@ -61,7 +61,7 @@ export class MovieService {
       });
   }
 
-  searchMovie(searchTerm: string) {
+  searchMovie(searchTerm: string): void {
     this.http
       .get<IMovie[]>(`${environment.searchMoviesUrl}?searchText=${searchTerm}`)
       .pipe(catchError(this.handleError))

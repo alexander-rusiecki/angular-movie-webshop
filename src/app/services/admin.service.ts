@@ -12,7 +12,7 @@ export class AdminService {
   orders$ = this.orders.asObservable();
 
   constructor(private http: HttpClient) {}
-  getActiveOrders() {
+  getActiveOrders(): void {
     this.http
       .get<IOrder[]>(`${environment.createOrderUrl}?companyId=40`)
       .pipe(catchError(this.handleError))
@@ -20,7 +20,7 @@ export class AdminService {
         this.orders.next(activOrders);
       });
   }
-  deleteOrder(id: number) {
+  deleteOrder(id: number): void {
     this.http
       .delete(`${environment.createOrderUrl}/${id}?companyId=40`)
       .pipe(catchError(this.handleError))

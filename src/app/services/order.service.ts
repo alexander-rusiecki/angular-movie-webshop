@@ -28,7 +28,7 @@ export class OrderService {
     private localStorageService: LocalStorageService
   ) {}
 
-  createOrder(order: Order) {
+  createOrder(order: Order): void {
     this.http
       .post<IOrder>(environment.createOrderUrl, order, httpHeaders)
       .pipe(catchError(this.handleError))

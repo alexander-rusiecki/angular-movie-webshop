@@ -4,7 +4,7 @@
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Price</th>
-        <th scope="col">added</th>
+        <th scope="col">Added to store</th>
         <th scope="col">remove from cart</th>
       </tr>
     </thead>
@@ -27,7 +27,7 @@
       Total price: {{ totalPrice | currency: "SEK":"symbol" }}
       <div class="text-center mt-5">
         <a
-          class="btn btn-success"
+          class="btn btn-primary"
           aria-current="page"
           routerLink=""
           routerLinkActive="active"
@@ -43,7 +43,7 @@
         <button
           (click)="clearCart('boughtMovies')"
           type="button"
-          class="btn btn-primary"
+          class="btn btn-outline-primary"
         >
           Clear cart
         </button>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { OrderService } from '@services/order.service';
 import { LocalStorageService } from '@services/local-storage.service';
+import { SharedService } from '@services/shared.service';
+
 import { Order } from '@models/Order';
 import { OrderRow } from '@models/OrderRow';
 import { IMovie } from '@interfaces/MovieInterface';
@@ -26,18 +28,20 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private orderService: OrderService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
     this.boughtMovies = this.localStorageService.get('boughtMovies');
-    this.totalPrice = this.boughtMovies.reduce((acc: number, curr: IMovie) => {
-      return acc + curr.price;
-    }, 0);
+    this.sharedService.totalPrice$.subscribe((total) => {
+      this.totalPrice = total;
+    });
+    this.sharedService.getTotalPrice();
   }
 
   handleSubmit() {
-    if (this.boughtMovies.length) {
+    if (this.boughtMovies.length && this.orderForm.value.payment) {
       for (let i = 0; i < this.boughtMovies.length; i++) {
         if (
           !this.orderRow.some(

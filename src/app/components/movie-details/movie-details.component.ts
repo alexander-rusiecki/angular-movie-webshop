@@ -32,7 +32,7 @@ export class MovieDetailsComponent implements OnInit {
     });
     this.boughtMovies = this.localStorageService.get('boughtMovies');
   }
-  addToCart(key: string, movie: IMovie) {
+  addToCart(key: string, movie: IMovie): void {
     this.localStorageService.updateLocalStorage(key, movie);
   }
 }

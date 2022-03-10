@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MovieService } from '@services/movie.service';
 import { IMovie } from '@interfaces/MovieInterface';
 
@@ -25,7 +25,7 @@ export class MoviesComponent implements OnInit {
     this.movieService.getAllMovies();
   }
 
-  handleSubmit() {
+  handleSubmit(): void {
     this.movieService.search$.subscribe((webshopFoundMovies: IMovie[]) => {
       this.movies = webshopFoundMovies;
     });

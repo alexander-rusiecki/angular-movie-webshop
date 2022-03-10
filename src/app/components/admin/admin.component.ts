@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { IOrder } from '@interfaces/OrderInterface';
 import { AdminService } from '@services/admin.service';
@@ -11,7 +10,7 @@ import { AdminService } from '@services/admin.service';
 export class AdminComponent implements OnInit {
   activOrders: IOrder[] = [];
 
-  constructor(private adminService: AdminService, private http: HttpClient) {}
+  constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.adminService.orders$.subscribe((webshopOrders: IOrder[]) => {

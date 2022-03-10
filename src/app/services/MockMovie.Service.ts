@@ -28,18 +28,11 @@ export class MockMovieService {
 
   constructor(private http: HttpClient) {}
 
-  getAllMovies() {
+  getAllMovies(): void {
     this.movies.next(mockMovieArray);
-
-    // this.http
-    //   .get<IMovie[]>(environment.moviesUrl)
-    //   .pipe(catchError(this.handleError))
-    //   .subscribe((x: IMovie[]) => {
-    //     this.movies.next(mockMovieArray);
-    //   });
   }
 
-  getMovieById(id: number) {
+  getMovieById(id: number): void {
     this.movie.next(mockMovie1);
   }
 

@@ -32,7 +32,6 @@ export class LocalStorageService {
   }
   removeItem(key: string): void {
     this.localStorage.removeItem(key);
-    // this.moviesInLocalStorage = JSON.parse(this.localStorage.getItem(key)!);
     this.localStorageCart.next(this.moviesInLocalStorage);
   }
 
