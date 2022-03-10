@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MoviesComponent } from './movies.component';
+import { MockMovieService } from '@services/MockMovie.Service';
+import { MovieService } from '@services/movie.service';
 
 describe('MoviesComponent', () => {
   let component: MoviesComponent;
@@ -18,6 +20,7 @@ describe('MoviesComponent', () => {
         ReactiveFormsModule,
         FormsModule,
       ],
+      providers: [{ provide: MovieService, useClass: MockMovieService }],
     }).compileComponents();
   });
 
@@ -29,5 +32,8 @@ describe('MoviesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should get data from MockMovieService', () => {
+    expect(component.movies.length).toBe(3);
   });
 });

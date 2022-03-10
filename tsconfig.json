@@ -22,7 +22,8 @@
       "@services/*": ["app/services/*"],
       "@interfaces/*": ["app/interfaces/*"],
       "@models/*": ["app/models/*"],
-      "@environments/*": ["environments/*"]
+      "@environments/*": ["environments/*"],
+      "@mocks/*": ["mocks/*"]
     },
     "module": "es2020",
     "lib": ["es2020", "dom"]
