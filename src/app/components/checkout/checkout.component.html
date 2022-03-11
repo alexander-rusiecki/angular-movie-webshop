@@ -27,7 +27,7 @@
       *ngIf="orderForm.get('name')?.errors?.['minlength']"
       class="text-danger"
     >
-      Your name must include 3 characters
+      Your name must be at least 3 characters
     </div>
   </div>
 
@@ -42,6 +42,15 @@
     <option value="Mastercard">Mastercard</option>
     <option value="Klarna">Klarna</option>
   </select>
-
+  <div
+    *ngIf="orderForm.get('payment')?.touched || orderForm.get('payment')?.dirty"
+  >
+    <div
+      *ngIf="orderForm.get('payment')?.errors?.['required']"
+      class="text-danger"
+    >
+      Please, choose payment method
+    </div>
+  </div>
   <button class="btn btn-outline-primary my-5" type="submit">Buy</button>
 </form>
