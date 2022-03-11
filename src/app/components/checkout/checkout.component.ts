@@ -40,6 +40,7 @@ export class CheckoutComponent implements OnInit {
     });
     this.sharedService.getTotalPrice();
   }
+  isOrderSent: boolean = false;
 
   handleSubmit() {
     for (let i = 0; i < this.boughtMovies.length; i++) {
@@ -76,6 +77,7 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.orderService.createOrder(this.order);
-    this.router.navigate(['/']);
+    // this.router.navigate(['/']);
+    this.isOrderSent = true;
   }
 }

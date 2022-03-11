@@ -1,62 +1,78 @@
-<form
-  [formGroup]="orderForm"
-  class="d-flex flex-column w-50 mx-auto"
-  (ngSubmit)="handleSubmit()"
->
-  <input
-    formControlName="name"
-    class="form-control me-sm-2 my-2"
-    type="text"
-    placeholder="enter your name"
-    id="name"
-  />
-  <div
-    *ngIf="
-      orderForm.get('name')?.invalid &&
-      (orderForm.get('name')?.touched || orderForm.get('name')?.dirty)
-    "
+<div *ngIf="!isOrderSent; else thankyou">
+  <form
+    [formGroup]="orderForm"
+    class="d-flex flex-column w-50 mx-auto"
+    (ngSubmit)="handleSubmit()"
   >
+    <input
+      formControlName="name"
+      class="form-control me-sm-2 my-2"
+      type="text"
+      placeholder="enter your name"
+      id="name"
+    />
     <div
-      *ngIf="orderForm.get('name')?.errors?.['required']"
-      class="text-danger"
+      *ngIf="
+        orderForm.get('name')?.invalid &&
+        (orderForm.get('name')?.touched || orderForm.get('name')?.dirty)
+      "
     >
-      Please enter your name
+      <div
+        *ngIf="orderForm.get('name')?.errors?.['required']"
+        class="text-danger"
+      >
+        Please enter your name
+      </div>
+
+      <div
+        *ngIf="orderForm.get('name')?.errors?.['minlength']"
+        class="text-danger"
+      >
+        Your name must be at least 3 characters
+      </div>
     </div>
 
-    <div
-      *ngIf="orderForm.get('name')?.errors?.['minlength']"
-      class="text-danger"
+    <select
+      formControlName="payment"
+      id="payment"
+      class="form-select my-2"
+      aria-label="Default select example"
     >
-      Your name must be at least 3 characters
-    </div>
-  </div>
-
-  <select
-    formControlName="payment"
-    id="payment"
-    class="form-select my-2"
-    aria-label="Default select example"
-  >
-    <option selected>Choose payment type</option>
-    <option value="Paypal">Paypal</option>
-    <option value="Mastercard">Mastercard</option>
-    <option value="Klarna">Klarna</option>
-  </select>
-  <div
-    *ngIf="orderForm.get('payment')?.touched || orderForm.get('payment')?.dirty"
-  >
+      <option selected>Choose payment type</option>
+      <option value="Paypal">Paypal</option>
+      <option value="Mastercard">Mastercard</option>
+      <option value="Klarna">Klarna</option>
+    </select>
     <div
-      *ngIf="orderForm.get('payment')?.errors?.['required']"
-      class="text-danger"
+      *ngIf="
+        orderForm.get('payment')?.touched || orderForm.get('payment')?.dirty
+      "
     >
-      Please, choose payment method
+      <div
+        *ngIf="orderForm.get('payment')?.errors?.['required']"
+        class="text-danger"
+      >
+        Please, choose payment method
+      </div>
     </div>
+    <button
+      class="btn btn-outline-primary my-5"
+      [disabled]="!orderForm.valid"
+      type="submit"
+    >
+      Buy
+    </button>
+  </form>
+</div>
+<ng-template #thankyou>
+  <div class="d-flex flex-column thankyou w-25 mx-auto">
+    <h4 mb-5>Thank you for shopping!</h4>
+    <a
+      class="btn btn-outline-primary mx-1"
+      aria-current="page"
+      routerLink=""
+      routerLinkActive="active"
+      >Back to store</a
+    >
   </div>
-  <button
-    class="btn btn-outline-primary my-5"
-    [disabled]="!orderForm.valid"
-    type="submit"
-  >
-    Buy
-  </button>
-</form>
+</ng-template>
