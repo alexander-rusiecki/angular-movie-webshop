@@ -33,7 +33,7 @@ describe('MoviesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should get data from MockMovieService', () => {
+  it('should get data length from MockMovieService', () => {
     expect(component.movies.length).toBe(3);
   });
 });
