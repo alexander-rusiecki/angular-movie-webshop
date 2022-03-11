@@ -42,42 +42,40 @@ export class CheckoutComponent implements OnInit {
   }
 
   handleSubmit() {
-    if (this.boughtMovies.length && this.orderForm.value.payment) {
-      for (let i = 0; i < this.boughtMovies.length; i++) {
-        if (
-          !this.orderRow.some(
-            (movie) => movie.productId === this.boughtMovies[i].id
-          )
-        ) {
-          this.orderRow.push({
-            productId: this.boughtMovies[i].id,
-            amount: this.amount + 1,
-          });
-        } else {
-          for (let j = 0; j < this.orderRow.length; j++) {
-            if (this.orderRow[j].productId === this.boughtMovies[i].id) {
-              this.orderRow[j].amount++;
-            }
+    for (let i = 0; i < this.boughtMovies.length; i++) {
+      if (
+        !this.orderRow.some(
+          (movie) => movie.productId === this.boughtMovies[i].id
+        )
+      ) {
+        this.orderRow.push({
+          productId: this.boughtMovies[i].id,
+          amount: this.amount + 1,
+        });
+      } else {
+        for (let j = 0; j < this.orderRow.length; j++) {
+          if (this.orderRow[j].productId === this.boughtMovies[i].id) {
+            this.orderRow[j].amount++;
           }
         }
       }
-      this.order = new Order(
-        new Date().toISOString().split('.')[0],
-        this.orderForm.value.name,
-        this.orderForm.value.payment,
-        this.totalPrice,
-        this.orderRow
-      );
-      this.localStorageService.removeItem('boughtMovies');
-      this.boughtMovies = [];
-      this.orderForm.reset();
-
-      this.orderService.order$.subscribe((placedOrder: Order) => {
-        this.order = placedOrder;
-      });
-
-      this.orderService.createOrder(this.order);
-      this.router.navigate(['/']);
     }
+    this.order = new Order(
+      new Date().toISOString().split('.')[0],
+      this.orderForm.value.name,
+      this.orderForm.value.payment,
+      this.totalPrice,
+      this.orderRow
+    );
+    this.localStorageService.removeItem('boughtMovies');
+    this.boughtMovies = [];
+    this.orderForm.reset();
+
+    this.orderService.order$.subscribe((placedOrder: Order) => {
+      this.order = placedOrder;
+    });
+
+    this.orderService.createOrder(this.order);
+    this.router.navigate(['/']);
   }
 }

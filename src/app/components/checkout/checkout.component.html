@@ -52,5 +52,11 @@
       Please, choose payment method
     </div>
   </div>
-  <button class="btn btn-outline-primary my-5" type="submit">Buy</button>
+  <button
+    class="btn btn-outline-primary my-5"
+    [disabled]="!orderForm.valid"
+    type="submit"
+  >
+    Buy
+  </button>
 </form>
