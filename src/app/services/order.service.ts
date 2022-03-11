@@ -1,10 +1,6 @@
 import { LocalStorageService } from '@services/local-storage.service';
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { catchError, Subject, throwError } from 'rxjs';
 import { Order } from '@models/Order';
