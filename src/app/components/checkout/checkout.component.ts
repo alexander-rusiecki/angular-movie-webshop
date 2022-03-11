@@ -7,6 +7,7 @@ import { SharedService } from '@services/shared.service';
 import { Order } from '@models/Order';
 import { OrderRow } from '@models/OrderRow';
 import { IMovie } from '@interfaces/MovieInterface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -23,13 +24,13 @@ export class CheckoutComponent implements OnInit {
     name: ['', [Validators.required, Validators.minLength(3)]],
     payment: ['', [Validators.required]],
   });
-  isOrderSent: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private orderService: OrderService,
     private localStorageService: LocalStorageService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -76,7 +77,7 @@ export class CheckoutComponent implements OnInit {
       });
 
       this.orderService.createOrder(this.order);
-      this.isOrderSent = true;
+      this.router.navigate(['/']);
     }
   }
 }

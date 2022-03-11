@@ -26,7 +26,7 @@ export class MockMovieService {
   private search = new Subject<any>();
   search$ = this.search.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   getAllMovies(): void {
     this.movies.next(mockMovieArray);

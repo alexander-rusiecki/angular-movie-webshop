@@ -10,12 +10,6 @@ import { catchError, Subject, throwError } from 'rxjs';
 import { Order } from '@models/Order';
 import { IOrder } from '@interfaces/OrderInterface';
 
-const httpHeaders = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
-};
-
 @Injectable({
   providedIn: 'root',
 })
@@ -30,7 +24,7 @@ export class OrderService {
 
   createOrder(order: Order): void {
     this.http
-      .post<IOrder>(environment.createOrderUrl, order, httpHeaders)
+      .post<IOrder>(environment.createOrderUrl, order)
       .pipe(catchError(this.handleError))
       .subscribe((myOrder: IOrder) => {
         this.order.next(myOrder);

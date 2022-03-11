@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MoviesComponent } from './movies.component';
-import { MockMovieService } from '@services/MockMovie.Service';
+import { MockMovieService } from '@services/mockMovie.service';
 import { MovieService } from '@services/movie.service';
 
 describe('MoviesComponent', () => {
